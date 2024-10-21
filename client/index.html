@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Family Chores Fun!</title>
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Family Chores Tracker</h1>
+        <form id="choresForm">
+            <input type="text" id="choreInput" placeholder="Add a new chore" required>
+            <input type="date" id="dueDateInput" required>
+            <select id="priorityInput" required>
+                <option value="">Select Priority</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <input type="text" id="userInput" placeholder="Assign to (e.g., name)" required>
+            <button type="submit">Add Chore</button>
+        </form>
+        <ul id="choresList"></ul>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
