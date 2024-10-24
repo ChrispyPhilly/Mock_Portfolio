@@ -3,34 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Family Chores Fun!</title>
+    <title>Chore App</title>
 </head>
 <body>
     <div class="container">
-        <h1>Family Chores Tracker</h1>
-        <form id="choresForm">
-            <input type="text" id="choreInput" placeholder="Add a new chore" required>
-            <input type="date" id="dueDateInput" required>
-            <select id="priorityInput" required>
-                <option value="">Select Priority</option>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-            </select>
-            <input type="text" id="userInput" placeholder="Assign to (e.g., name)" required>
-            <button type="submit">Add Chore</button>
-        </form>
-        <ul id="choresList"></ul>
+        <h1>Chore Tracker</h1>
+        <div class="user-selection">
+            <button class="user-btn" onclick="setUser('Jeremy')">Jeremy</button>
+            <button class="user-btn" onclick="setUser('Brittany')">Brittany</button>
+            <button class="user-btn" onclick="setUser('Aisha')">Aisha</button>
+        </div>
+        <div class="chore-section">
+            <h2>Chores for <span id="current-user">Select a user</span></h2>
+            <input type="text" id="chore-input" placeholder="Enter a new chore">
+            <button onclick="addChore()">Add Chore</button>
+            <div id="points-display">Points: <span id="points">0</span></div>
+            <div id="rewards-display">Earned Rewards: <ul id="rewards-list"></ul></div>
+            <ul id="chore-list"></ul>
+        </div>
+        <div class="leaderboard-section">
+            <h2>Monthly Leaderboard</h2>
+            <select id="month-select"></select>
+            <ul id="leaderboard-list"></ul>
+            <canvas id="scoreChart" width="400" height="200"></canvas>
+        </div>
+        
+        <div class="chart-section">
+            <h2>Family Performance Over Time</h2>
+            <canvas id="scoreChart" width="400" height="200"></canvas>
+        </div>
+        
+        <div class="chat-section">
+            <h2>Family Chat</h2>
+            <div id="chat-display" class="chat-display"></div>
+            <input type="text" id="chat-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+        
+        <div class="store-section">
+            <h2>Virtual Store</h2>
+            <div id="store-items"></div>
+            <h3>Your Points: <span id="store-points">0</span></h3>
+        </div>
+                
     </div>
-
-    <div class="grid">
-        <div class="card">Jeremy</div>
-        <div class="card">Brittany</div>
-        <div class="card">Aisha</div>
-    </div>
-
-    <button class="btn">Add Family Member</button>
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 </html>

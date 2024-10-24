@@ -4,12 +4,12 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/family-chores', {
+mongoose.connect('mongodb://localhost:3001/family-chores', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -26,3 +26,5 @@ const categoriesRoute = require('./routes/categories');
 app.use('/api/users', usersRoute);
 app.use('/api/chores', choresRoute);
 app.use('/api/categories', categoriesRoute);
+
+
