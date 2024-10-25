@@ -6,11 +6,14 @@
     --card-bg: #f2f2f2;
     --reward-bg: #d4edda;
     --leaderboard-bg: #f0f0f0;
+    --clean-background: url('Background.jpg');
 }
 
 
 body {
     font-family: 'Roboto', sans-serif;
+    background: var(--clean-background) no-repeat center center fixed;
+    background-size: cover;
     background-color: #f7f9fc;
     color: #333;
     margin: 0;
@@ -21,13 +24,14 @@ body {
     max-width: 600px;
     margin: auto;
     padding: 20px;
-    background: white;
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent for a modern look */
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
     text-align: center;
+    color: var(--primary-color);
 }
 
 .user-selection {
@@ -98,6 +102,8 @@ li:hover {
     background: #e1e1e1;
 }
 
+
+
 .edit-btn, .delete-btn {
     margin-left: 10px;
     padding: 5px 10px;
@@ -144,7 +150,7 @@ li:hover {
 }
 
 #rewards-list li {
-    background: #d4edda;
+    background: var(--reward-bg);
     margin: 5px 0;
     padding: 10px;
     border-radius: 5px;
@@ -243,4 +249,74 @@ select {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #4A90E2;
+}
+
+.calendar-section {
+    margin-top: 20px;
+    padding: 20px;
+    border-top: 2px solid var(--primary-color);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day {
+    background-color: #f9f9f9;
+    border: 1px solid #e1e1e1;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.event {
+    background-color: var(--hover-color);
+    color: white;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute; /* To position within the day box */
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

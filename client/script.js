@@ -5,6 +5,7 @@ const chores = {
     Aisha: { list: [], points: 0, rewards: [], monthlyScores: {} }
 };
 
+//rewards to pop up automatically
 const rewards = [
     { points: 20, message: "You've earned a Snack!" },
     { points: 50, message: "You've earned a Movie Night!" },
@@ -68,8 +69,9 @@ function updateChoreList() {
     });
 }
 
+//points being assigned for completing a chore
 function completeChore(index) {
-    const points = 10; // Points awarded for completing a chore
+    const points = 10; 
     chores[currentUser].points += points;
 
     const month = new Date().toLocaleString('default', { month: 'long', year: 'numeric' });
@@ -232,6 +234,90 @@ function setUser(user) {
     document.getElementById('current-user').innerText = user;
     document.getElementById('chore-list').innerHTML = '';
     updateChoreList();
-    updateStoreDisplay(); // Update store when user changes
+    updateStoreDisplay(); 
     renderChart();
 }
+
+//js for family calender
+
+let currentDate = new Date();
+let events = []; 
+function renderCalendar() {
+    const calendar = document.getElementById('calendar');
+    calendar.innerHTML = ''; 
+    const month = currentDate.getMonth();
+    const year = currentDate.getFullYear();
+    
+    
+    const firstDay = new Date(year, month, 1);
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    
+    for (let i = 0; i < firstDay.getDay(); i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.classList.add('day');
+        calendar.appendChild(emptyCell);
+    }
+
+    
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayCell = document.createElement('div');
+        dayCell.classList.add('day');
+        dayCell.innerHTML = day;
+
+        
+        const dayEvents = events.filter(event => {
+            const eventDate = new Date(event.date);
+            return eventDate.getFullYear() === year && eventDate.getMonth() === month && eventDate.getDate() === day;
+        });
+
+        dayEvents.forEach(event => {
+            const eventDiv = document.createElement('div');
+            eventDiv.classList.add('event');
+            eventDiv.innerHTML = `${event.title} at ${event.time}`;
+            dayCell.appendChild(eventDiv);
+        });
+
+        dayCell.onclick = () => openAddEventModal(day);
+        calendar.appendChild(dayCell);
+    }
+
+    document.getElementById('current-month').innerText = `${firstDay.toLocaleString('default', { month: 'long' })} ${year}`;
+}
+
+function openAddEventModal(day) {
+    document.getElementById('add-event-modal').style.display = 'block';
+    document.getElementById('event-date').value = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${day}`;
+}
+
+function closeAddEventModal() {
+    document.getElementById('add-event-modal').style.display = 'none';
+}
+
+document.getElementById('event-form').onsubmit = (event) => {
+    event.preventDefault();
+    const title = document.getElementById('event-title').value;
+    const date = document.getElementById('event-date').value;
+    const time = document.getElementById('event-time').value;
+    const duration = document.getElementById('event-duration').value;
+
+   
+    const newEvent = {
+        title: title,
+        date: date,
+        time: time,
+        duration: duration
+    };
+
+    
+    events.push(newEvent);
+    
+    
+    document.getElementById('event-form').reset();
+
+   
+    renderCalendar();
+};
+
+
+renderCalendar();

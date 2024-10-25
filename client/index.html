@@ -29,13 +29,48 @@
             <ul id="leaderboard-list"></ul>
             <canvas id="scoreChart" width="400" height="200"></canvas>
         </div>
-        
-        <div class="chart-section">
-            <h2>Family Performance Over Time</h2>
-            <canvas id="scoreChart" width="400" height="200"></canvas>
+
+        <div class="calendar-section">
+            <h2>Family Calendar</h2>
+            <div class="calendar-header">
+                <button onclick="previousMonth()">◀</button>
+                <h3 id="current-month">March 2024</h3>
+                <button onclick="nextMonth()">▶</button>
+            </div>
+            <div id="calendar" class="calendar-grid">
+                <!-- Days of the week -->
+                <div class="day">Sun</div>
+                <div class="day">Mon</div>
+                <div class="day">Tue</div>
+                <div class="day">Wed</div>
+                <div class="day">Thu</div>
+                <div class="day">Fri</div>
+                <div class="day">Sat</div>
+                <!-- Dynamic days will be inserted here -->
+            </div>
+            <button onclick="openAddEventModal()">Add Event/Chore</button>
         </div>
         
-        <div class="chat-section">
+        <!-- Modal for Adding Event -->
+        <div id="add-event-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeAddEventModal()">&times;</span>
+                <h2>Add Event/Chore</h2>
+                <form id="event-form">
+                    <label for="event-title">Title:</label>
+                    <input type="text" id="event-title" required>
+                    <label for="event-date">Date:</label>
+                    <input type="date" id="event-date" required>
+                    <label for="event-time">Time:</label>
+                    <input type="time" id="event-time" required>
+                    <label for="event-duration">Duration:</label>
+                    <input type="number" id="event-duration" placeholder="Minutes">
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+        </div>
+               
+                <div class="chat-section">
             <h2>Family Chat</h2>
             <div id="chat-display" class="chat-display"></div>
             <input type="text" id="chat-input" placeholder="Type a message...">
